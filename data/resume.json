@@ -1,0 +1,38 @@
+{
+    "name": "Owen Berry",
+    "profession": "Software developer",
+    "focuses": ["Web development", "Full stack development"],
+    "jobs": {
+        "current": {},
+        "previous": [{
+            "title": "Senior Developer",
+            "description": "",
+            "languages": ["C#", "Javascript"],
+            "technologies": [
+                "ASP.Net WebForms & MCV",
+                "ASP.Net WebAPI",
+                "AWS EC2 server management",
+                "DNS setup",
+                "Facebook"
+            ],
+            "work": [
+                "Facebook applications for marketing",
+                "Integration with various social platforms - Twitter, G+, Facebook"
+            ],
+            "companies": [
+                {
+                    "name": "Rohlig Australia",
+                    "description": "Courier website for business partners"
+                },
+                {
+                    "name": "Tourism Australia",
+                    "description": "Best Job in the World"
+                },
+                {
+                    "name": "Australian Rugby Union",
+                    "description": ""
+                }
+            ]
+        }]
+    }
+}
