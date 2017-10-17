@@ -41,14 +41,11 @@ body {
 }
 
 @include media-breakpoint-up(sm) {
+    
     #site-name {
-        font-size: 4.5vw;
+        font-size: 4.2vw;
     }
     
-    // #left-sidebar {
-    //     border-right: 1px solid #666;
-    // }
-
     #resume-content {
         border-left: 1px solid $color-border;
     }
