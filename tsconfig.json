@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "alwaysStrict": false,
+        "allowSyntheticDefaultImports": false,
+        "checkJs": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "typeAcquisition": {
+        "enable": true
+    }    
+}

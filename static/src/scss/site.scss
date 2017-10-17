@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+// bootstrap variables
+$enable-print-styles: false;
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+
+$color-background: #ccc;
+$color-font: #333;
+$color-border: #666;
+
+$top-spacing: $spacer-x * .5; // same as mt-2 in HTML
+
+html {
+    background-color: $color-background;
+}
+body {
+    background-color: $color-background;
+    color: $color-font;
+    font-family: 'Josefin Sans';
+}
+#page-container {
+    min-height: 100vh;
+}
+#page-container > .row {
+    min-height: 100%;
+}
+
+
+#resume-content::after {
+    content: '';
+    display: block;
+    page-break-before: always;
+}
+
+.electron-browser {
+    .resume-remove {
+        display: none !important;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    #site-name {
+        font-size: 4.5vw;
+    }
+    
+    // #left-sidebar {
+    //     border-right: 1px solid #666;
+    // }
+
+    #resume-content {
+        border-left: 1px solid $color-border;
+    }
+
+    #left-sidebar .align-right {
+        text-align: right;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    #left-sidebar {
+        text-align: left;
+        border-bottom: 1px solid $color-border;
+    }
+}

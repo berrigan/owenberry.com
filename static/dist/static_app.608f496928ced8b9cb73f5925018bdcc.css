@@ -1,0 +1,29 @@
+html {
+  background-color: #ccc; }
+
+body {
+  background-color: #ccc;
+  color: #333;
+  font-family: 'Josefin Sans'; }
+
+#page-container {
+  min-height: 100vh; }
+
+#page-container > .row {
+  min-height: 100%; }
+
+.electron-browser .resume-remove {
+  display: none !important; }
+
+@media (min-width: 576px) {
+  #site-name {
+    font-size: 4.5vw; }
+  #left-sidebar {
+    border-right: 1px solid #666; }
+  #left-sidebar .align-right {
+    text-align: right; } }
+
+@media (max-width: 575px) {
+  #left-sidebar {
+    text-align: left;
+    border-bottom: 1px solid #666; } }
