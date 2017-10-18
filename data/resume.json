@@ -8,38 +8,67 @@
         "github": "https://github.com/berrigan/owenberry.com",
         "description": ""
     },
+    "personal": {
+
+    },
+    "experience": {
+        "languages": [
+            "C#",
+            "JavaScript & TypeScript",
+            "HTML + CSS",
+            "SQL"
+        ],
+        "technologies": [
+            "ASP.Net WebForms, MVC, WebAPI",
+            "Angular JS",
+            "jQuery, lodash, moment and various other front end libraries",
+            "Drag/touch mobile development using movable DOM elements via touch events",
+            "Canvas 2D work using Pixi.js",
+            "Project task management with Gulp, Grunt, NPM, webpack",
+            "Server setup, DNS Setup, AWS EC2 server management",
+            "Social integrations - Facebook, Twitter, Google+",
+            "API integrations - DHL, Brightcove, Google Maps, Youtube, Facebook, Twitter, Google+, various business coordinations"
+        ]
+    },
     "jobs": {
         "current": {},
         "previous": [{
             "title": "Senior Full-Stack Developer",
-            "description": "",
-            "languages": ["C#", "Javascript"],
-            "technologies": [
-                "ASP.Net WebForms & MCV",
-                "ASP.Net WebAPI",
-                "Angular JS",
-                "jQuery, lodash, moment and various other front end libraries",
-                "AWS EC2 server management",
-                "DNS setup",
-                "Social integrations - Facebook, Twitter, Google+",
-                "API integrations - DHL, Google Maps, Youtube, Facebook, Twitter, Google+, various business coordinations"
-            ],
+            "description": "",   
             "work": [
-                "Facebook applications for marketing",
-                "Integration with various social platforms - Twitter, G+, Facebook"
+                "Microsites & Facebook applications (iframed websites on apps.facebook.com/*) for promotions & marketing",
+                "Line of Business web applications"
             ],
-            "companies": [
+            "projects": [
                 {
-                    "name": "Rohlig Australia",
-                    "description": "Courier website for business partners"
+                    "company": "Röhlig Australia",
+                    "title": "Courier website for business partners.",
+                    "link": "https://rohligcourier.com",
+                    "work": "Continued development after initial setup, work to MVP launch, and continue into starting features."
                 },
                 {
-                    "name": "Tourism Australia",
-                    "description": "Best Job in the World"
+                    "company": "Tourism Australia",
+                    "title": "Best Jobs in the World",
+                    "link": "http://www.tourism.australia.com/en/about/our-campaigns/past-campaigns/best-jobs.html",
+                    "work": "Work on microsite & back end sites for video uploading for competition, integration with Brightcove, and video moderation and competition selection."
                 },
                 {
-                    "name": "Australian Rugby Union",
-                    "description": ""
+                    "company": "inouse",
+                    "title": "LiteEngine",
+                    "link": "",
+                    "work": "In house hosting and backend for development of simple microsite/Facebook applications using a XML + assets ZIP format."
+                },
+                {
+                    "company": "Australian Rugby Union",
+                    "title": "ARU Rugby Rewards 2012-2014",
+                    "link": "",
+                    "work": "Facebook application with mini competition and points to earn for prizes from ARU. Twitter integration for points from tweets and mapping of tweets. Facebook integration for checkins."
+                },
+                {
+                    "company": "R U OK Day",
+                    "title": "R U OK Conversation Starter",
+                    "link": "",
+                    "work": "Move around words to make a sentence using DOM touch events (mobile) or mouse events (desktop), and then post to a friend on Facebook to ask, 'R U OK?'"
                 }
             ]
         }]

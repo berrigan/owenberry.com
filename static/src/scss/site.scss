@@ -5,12 +5,14 @@ $enable-print-styles: false;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
+$color-background: theme-color("light");
+$color-font: theme-color("dark");
+$color-border: theme-color("secondary");
 
-$color-background: #ccc;
-$color-font: #333;
-$color-border: #666;
+$top-spacing: $spacer; // $spacer from bootstrap 4 beta
 
-$top-spacing: $spacer-x * .5; // same as mt-2 in HTML
+$section-spacing: $top-spacing * 1.25;
+
 
 html {
     background-color: $color-background;
@@ -18,8 +20,13 @@ html {
 body {
     background-color: $color-background;
     color: $color-font;
+}
+
+h1, h2, h3, h4 {
     font-family: 'Josefin Sans';
 }
+
+
 #page-container {
     min-height: 100vh;
 }
@@ -27,17 +34,8 @@ body {
     min-height: 100%;
 }
 
-
-#resume-content::after {
-    content: '';
-    display: block;
-    page-break-before: always;
-}
-
-.electron-browser {
-    .resume-remove {
-        display: none !important;
-    }
+#resume-content {
+    max-width: 600px;
 }
 
 @include media-breakpoint-up(sm) {
@@ -48,6 +46,7 @@ body {
     
     #resume-content {
         border-left: 1px solid $color-border;
+        min-height: calc(100vh - 0.5rem);
     }
 
     #left-sidebar .align-right {
@@ -60,4 +59,148 @@ body {
         text-align: left;
         border-bottom: 1px solid $color-border;
     }
+}
+
+
+@media print {
+    #site-name-subheading {
+        font-size: 0.9rem;
+    }
+
+    #resume-content::after {
+        content: '';
+        display: block;
+        page-break-before: always;
+    }
+
+    .electron-browser {
+        .resume-remove {
+            display: none !important;
+        }
+    }
+
+    .left-side-info {
+        p {
+            font-size: .8rem;
+        }
+    }
+
+    // move references to bottom on PDF
+    #left-sidebar {
+
+        display: flex;
+        flex-direction: column;
+
+        .list-section {
+            margin-top: 0;
+        }
+
+        .references {
+            margin-top: auto;
+        }
+    }
+}
+
+
+
+// ----- SECTIONS --------
+
+.list-section {
+
+    margin-top: $section-spacing / 2;
+
+    + .list-section {
+        margin-top: $section-spacing;
+    }
+
+    ul {
+
+        li {
+            line-height: 1.4;
+        }
+
+        li + li {
+            margin-top: $spacer / 4;
+        }
+
+        p {
+            margin-bottom: .2rem;
+        }
+
+        // sub-list
+        h4 {
+            font-size: 1rem;
+            margin-bottom: .2rem;
+        }
+
+    }
+}
+
+#left-sidebar {
+    ul {
+        padding-left: 1.4rem;
+    }
+}
+
+
+.references {
+    margin-top: 2rem;
+    ul {
+        li + li {
+            margin-top: $spacer / 2;
+        }
+    }
+}
+
+.previous-work {
+
+    margin-top: $section-spacing;
+
+    .previous-work-item {
+
+        padding-left: 1rem;
+
+        .list-section {
+            padding-left: 1rem;
+
+            ul {
+                padding-left: 0;
+                font-size: .8rem;
+                list-style: none;
+            }
+        }
+
+        .previous-work-item-experience {
+            margin-top: 0;
+        }
+
+        .previous-work-item-projects {
+
+            .project-title {
+                font-weight: 600;
+                margin-bottom: 0.1rem;
+                line-height: 1.2rem;
+
+                h4 {
+                    display: inline-block;
+                }
+            }
+
+            h4 { 
+                font-size: 1.2rem;
+            }
+
+            ul {
+                li {
+                    margin-bottom: 1rem;
+
+                    h4 { 
+                        font-size: 1rem;
+                    }
+                }
+            }
+            
+        }
+    }
+
 }

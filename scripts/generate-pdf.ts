@@ -12,10 +12,12 @@ function renderHtml(httpUrl: string) {
         templateUrl: httpUrl,
         inputBody: '',
         outputPath: 'pdf-render/resume.pdf',
-        renderDelay: 400,
+        renderDelay: 800,
         template: 'htmlbootstrap',
         options: {
-            pageSize: 'A4'
+            pageSize: 'A4',
+            marginsType: 2,
+            printBackground: true
         }
     });
 
