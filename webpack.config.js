@@ -32,7 +32,8 @@ module.exports = {
                 }, {
                     loader: "sass-loader",
                     options: {
-                        sourceMap: true
+                        sourceMap: true,
+                        includePath: ['.', '../node_modules/']
                     }
                 }],
                 // use style-loader in development
@@ -50,7 +51,7 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
-            Tether: 'tether'
+            Popper: 'popper.js'
         }),
         new HtmlWebpackPlugin({
             template: './static/src/index.html'
