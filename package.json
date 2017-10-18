@@ -8,7 +8,8 @@
     "update-sites": "./node_modules/.bin/ts-node ./scripts/update-sites.ts",
     "static-build": "./node_modules/.bin/ts-node ./scripts/static-build.ts",
     "pdf": "./node_modules/.bin/ts-node ./scripts/generate-pdf.ts",
-    "build-webpack": "webpack"
+    "build-webpack": "webpack",
+    "start:dev": "webpack-dev-server"
   },
   "devDependencies": {
     "@types/node": "7.0.22",
@@ -25,7 +26,8 @@
     "style-loader": "^0.18.2",
     "ts-node": "3.0.4",
     "typescript": "2.3.3",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.9.2"
   },
   "author": "Owen Berry",
   "license": "ISC"

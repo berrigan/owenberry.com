@@ -56,5 +56,10 @@ module.exports = {
             template: './static/src/index.html'
         }),
         extractSass
-    ]
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, 'static/dist'),
+        compress: true,
+        port: 8000
+    }
 };
