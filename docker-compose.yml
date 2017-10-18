@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  static-site:
+    build: ./static/.
+    volumes: 
+      - ./static/dist/.:/usr/share/nginx/html
+    ports:
+      - "8000:80"

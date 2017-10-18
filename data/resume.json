@@ -1,0 +1,47 @@
+{
+    "name": "Owen Berry",
+    "profession": "Software Developer",
+    "focuses": ["Full-Stack development", "Web development"],
+    "site": {
+        "name": "OwenBerry.com",
+        "url": "owenberry.com",
+        "github": "https://github.com/berrigan/owenberry.com",
+        "description": ""
+    },
+    "jobs": {
+        "current": {},
+        "previous": [{
+            "title": "Senior Full-Stack Developer",
+            "description": "",
+            "languages": ["C#", "Javascript"],
+            "technologies": [
+                "ASP.Net WebForms & MCV",
+                "ASP.Net WebAPI",
+                "Angular JS",
+                "jQuery, lodash, moment and various other front end libraries",
+                "AWS EC2 server management",
+                "DNS setup",
+                "Social integrations - Facebook, Twitter, Google+",
+                "API integrations - DHL, Google Maps, Youtube, Facebook, Twitter, Google+, various business coordinations"
+            ],
+            "work": [
+                "Facebook applications for marketing",
+                "Integration with various social platforms - Twitter, G+, Facebook"
+            ],
+            "companies": [
+                {
+                    "name": "Rohlig Australia",
+                    "description": "Courier website for business partners"
+                },
+                {
+                    "name": "Tourism Australia",
+                    "description": "Best Job in the World"
+                },
+                {
+                    "name": "Australian Rugby Union",
+                    "description": ""
+                }
+            ]
+        }]
+    }
+}
