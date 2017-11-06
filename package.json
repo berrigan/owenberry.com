@@ -4,16 +4,17 @@
   "description": "owenberry.com personal website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "",
     "update-sites": "./node_modules/.bin/ts-node ./scripts/update-sites.ts",
     "static-build": "./node_modules/.bin/ts-node ./scripts/static-build.ts",
     "pdf": "./node_modules/.bin/ts-node ./scripts/generate-pdf.ts",
-    "build-webpack": "webpack",
-    "start:dev": "webpack-dev-server"
+    
+    "build": "./node_modules/.bin/ts-node ./scripts/build.ts",
+    "start:dev": "webpack-dev-server --open --config webpack.dev.js"
   },
   "devDependencies": {
     "@types/node": "7.0.22",
     "bootstrap": "^4.0.0-beta",
+    "clean-webpack-plugin": "^0.1.17",
     "cpx": "1.5.0",
     "css-loader": "^0.28.4",
     "electron": "1.6.10",
@@ -30,7 +31,8 @@
     "ts-node": "3.0.4",
     "typescript": "2.3.3",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.9.2"
+    "webpack-dev-server": "^2.9.2",
+    "webpack-merge": "^4.1.0"
   },
   "author": "Owen Berry",
   "license": "ISC"
