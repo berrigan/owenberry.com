@@ -20,7 +20,7 @@ module.exports = (env) => {
             static_app: './static/src/js/static_app.js'
         },
         output: {
-            filename: '[name].bundle.js',
+            filename: '[name].[chunkhash].bundle.js',
             path: path.resolve(__dirname, 'static/dist')
         },
         module: {
