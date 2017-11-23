@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "owenberry.com personal website",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "update-sites": "./node_modules/.bin/ts-node ./scripts/update-sites.ts",
     "static-build": "./node_modules/.bin/ts-node ./scripts/static-build.ts",
     "pdf": "./node_modules/.bin/ts-node ./scripts/generate-pdf.ts",
-    
     "build": "./node_modules/.bin/ts-node ./scripts/build.ts",
     "start:dev": "webpack-dev-server --open --config webpack.dev.js"
   },
