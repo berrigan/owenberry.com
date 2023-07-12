@@ -1,7 +1,7 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin')
 var webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 let path = require('path');
 
@@ -10,11 +10,6 @@ module.exports = (env) => {
     env = env || {};
     const isProduction = env.production === true;
 
-    const extractSass = new ExtractTextPlugin({
-        filename: '[name].[contenthash].css',
-        disable: !isProduction
-    });
-    
     return {
         entry: {
             static_app: './static/src/js/static_app.js'
@@ -26,41 +21,26 @@ module.exports = (env) => {
         module: {
             rules: [{
                 test: /\.scss$/,
-                use: extractSass.extract({
-                    use: [{
-                        loader: "css-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    }, {
-                        loader: "sass-loader",
-                        options: {
-                            sourceMap: true,
-                            includePath: ['.', '../node_modules/']
-                        }
-                    }],
-                    // use style-loader in development
-                    fallback: "style-loader"
-                })
+                use: [
+                    miniCssExtractPlugin.loader,
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                ],
             }, {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
                     'file-loader'
                 ]
-           }]
+            }]
         },
         plugins: [
-            new webpack.ProvidePlugin({ // inject ES5 modules as global vars
-                $: 'jquery',
-                jQuery: 'jquery',
-                'window.jQuery': 'jquery',
-                Popper: 'popper.js'
-            }),
-            new CleanWebpackPlugin(['./static/dist']),
+            new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 template: './static/src/index.html'
             }),
-            extractSass
+            new miniCssExtractPlugin(),
         ]
     };
 

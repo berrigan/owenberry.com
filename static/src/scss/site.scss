@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 // bootstrap variables
@@ -5,24 +7,31 @@ $enable-print-styles: false;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
-$color-background: theme-color("light");
-$color-font: theme-color("dark");
-$color-border: theme-color("secondary");
+$color-background: map.get($theme-colors, "light");
+$color-font: map.get($theme-colors, "dark");
+$color-border: map.get($theme-colors, "secondary");
 
-$top-spacing: $spacer; // $spacer from bootstrap 4 beta
+$top-spacing: $spacer;
 
 $section-spacing: $top-spacing * 1.25;
 
+@page {
+    size: A4 portrait;
+}
 
 html {
     background-color: $color-background;
 }
+
 body {
     background-color: $color-background;
     color: $color-font;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Josefin Sans';
 }
 
@@ -30,7 +39,8 @@ h1, h2, h3, h4 {
 #page-container {
     min-height: 100vh;
 }
-#page-container > .row {
+
+#page-container>.row {
     min-height: 100%;
 }
 
@@ -39,14 +49,14 @@ h1, h2, h3, h4 {
 }
 
 @include media-breakpoint-up(sm) {
-    
+
     #site-name {
         font-size: 4.2vw;
     }
-    
+
     #resume-content {
         border-left: 1px solid $color-border;
-        min-height: calc(100vh - 0.5rem);
+        min-height: calc(100vh - 1rem);
     }
 
     #left-sidebar .align-right {
@@ -57,7 +67,6 @@ h1, h2, h3, h4 {
 @include media-breakpoint-down(xs) {
     #left-sidebar {
         text-align: left;
-        border-bottom: 1px solid $color-border;
     }
 }
 
@@ -70,10 +79,9 @@ h1, h2, h3, h4 {
     #resume-content::after {
         content: '';
         display: block;
-        page-break-before: always;
     }
 
-    .electron-browser {
+    .pup-ob {
         .resume-remove {
             display: none !important;
         }
@@ -83,6 +91,10 @@ h1, h2, h3, h4 {
         p {
             font-size: .8rem;
         }
+    }
+
+    .list-section {
+        font-size: .8rem;
     }
 
     // move references to bottom on PDF
@@ -107,9 +119,9 @@ h1, h2, h3, h4 {
 
 .list-section {
 
-    margin-top: $section-spacing / 2;
+    margin-top: calc($section-spacing / 2);
 
-    + .list-section {
+    +.list-section {
         margin-top: $section-spacing;
     }
 
@@ -119,8 +131,8 @@ h1, h2, h3, h4 {
             line-height: 1.4;
         }
 
-        li + li {
-            margin-top: $spacer / 4;
+        li+li {
+            margin-top: calc($spacer / 4);
         }
 
         p {
@@ -145,9 +157,10 @@ h1, h2, h3, h4 {
 
 .references {
     margin-top: 2rem;
+
     ul {
-        li + li {
-            margin-top: $spacer / 2;
+        li+li {
+            margin-top: calc($spacer / 2);
         }
     }
 }
@@ -186,7 +199,7 @@ h1, h2, h3, h4 {
                 }
             }
 
-            h4 { 
+            h4 {
                 font-size: 1.2rem;
             }
 
@@ -194,13 +207,12 @@ h1, h2, h3, h4 {
                 li {
                     margin-bottom: 1rem;
 
-                    h4 { 
+                    h4 {
                         font-size: 1rem;
                     }
                 }
             }
-            
+
         }
     }
-
 }
