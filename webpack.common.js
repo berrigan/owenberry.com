@@ -36,7 +36,12 @@ module.exports = (env) => {
             }]
         },
         plugins: [
-            new CleanWebpackPlugin(),
+            new CleanWebpackPlugin({
+                cleanOnceBeforeBuildPatterns: [
+                    '**/*',
+                    '!resume/**',
+                ],
+            }),
             new HtmlWebpackPlugin({
                 template: './static/src/index.html'
             }),

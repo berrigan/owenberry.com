@@ -1,7 +1,7 @@
 import puppeteer, { Browser } from 'puppeteer-core';
 import * as fsOld from 'fs';
 import * as fs from 'fs/promises';
-let cpx = require('cpx');
+
 
 const pdfUrl = 'http://localhost:8000';
 const pdfRenderFolder = './pdf-render/';
@@ -10,25 +10,10 @@ const dist = './static/dist/';
 const resumeFolder = `${dist}resume/`;
 const resumePath = `${resumeFolder}resume.pdf`;
 
-    // let htmlToPdf = new HTML5ToPdf({
-    //     templateUrl: httpUrl,
-    //     inputBody: '',
-    //     outputPath: 'pdf-render/resume.pdf',
-    //     rendererDelay: 800,
-    //     template: 'htmlbootstrap',
-    //     launchOptions: {
-    //         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
-    //         headless: false,
-    //     },
-    //     options: {
-    //         pageSize: 'A4',
-    //         marginsType: 2,
-    //         printBackground: true
-    //     }
-    // });
-
 async function mkDirIfNotExists(folder: string): Promise<void> {
+    console.log('if (!fsOld.existsSync(folder)) {', !fsOld.existsSync(folder));
     if (!fsOld.existsSync(folder)) {
+        console.log('mkdir - ', folder);
         await fs.mkdir(folder);
     }
 }

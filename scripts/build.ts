@@ -13,26 +13,27 @@ let devConfig = fnDevConfig({ production: false });
 let devServerCompiler = webpack(devConfig);
 let server = new WebpackDevServer(devServerCompiler, {});
 
+function compileProd() {
+    let compiler = webpack(prodConfig);
+    compiler.run((err, stats) => {
+        if (err) {
+            console.error('Error running Webpack PROD..');
+            console.error(err);
+        } else {
+            // console.log(stats);
+        }
+    });
+}
+
 // let firstWatchRun = true;
 server.listen(8000, 'localhost', () => {
     console.log('WebpackDevServer started ..');
-});
-
-setTimeout(() => {
+    console.log('Rendering PDF ..');
 
     renderPdf().then(() => {
         console.log('Generate PDF done in build.');
         server.close();
+        compileProd();
     });
-
-}, 3000)
-
-let compiler = webpack(prodConfig);
-compiler.run((err, stats) => {
-    if (err) {
-        console.error('Error running Webpack PROD..');
-        console.error(err);
-    } else {
-        // console.log(stats);
-    }
 });
+
