@@ -5,15 +5,13 @@ let path = require('path');
 
 module.exports = (env) => {
 
-    console.log(__dirname);
-
     let commonConfig = common(env);
 
     const devConfig = {
         mode: 'development',
         devtool: 'inline-source-map',
         devServer: {
-            static: path.join(__dirname, 'static/dist'),
+            static: path.join(__dirname, 'docs'),
             compress: true,
             port: 8000,
             liveReload: true,

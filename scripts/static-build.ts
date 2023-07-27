@@ -3,7 +3,7 @@ import fs = require('fs');
 import path = require('path');
 import _ = require('lodash');
 
-cpx.copy('./data/*.*', './static/dist/data');
+cpx.copy('./data/*.*', './docs/data');
 
 
 function template(html: string, templateObject: object) {

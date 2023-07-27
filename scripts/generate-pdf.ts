@@ -6,7 +6,7 @@ import * as fs from 'fs/promises';
 const pdfUrl = 'http://localhost:8000';
 const pdfRenderFolder = './pdf-render/';
 const pdfRenderPath = `${pdfRenderFolder}resume.pdf`;
-const dist = './static/dist/';
+const dist = './docs/';
 const resumeFolder = `${dist}resume/`;
 const resumePath = `${resumeFolder}resume.pdf`;
 

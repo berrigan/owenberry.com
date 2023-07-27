@@ -1,22 +1,20 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
-var webpack = require('webpack');
 
 let path = require('path');
 
 module.exports = (env) => {
 
     env = env || {};
-    const isProduction = env.production === true;
 
     return {
         entry: {
-            static_app: './static/src/js/static_app.js'
+            static_app: './src/js/static_app.js'
         },
         output: {
             filename: '[name].[chunkhash].bundle.js',
-            path: path.resolve(__dirname, 'static/dist')
+            path: path.resolve(__dirname, 'docs')
         },
         module: {
             rules: [{
@@ -43,7 +41,7 @@ module.exports = (env) => {
                 ],
             }),
             new HtmlWebpackPlugin({
-                template: './static/src/index.html'
+                template: './src/index.html'
             }),
             new miniCssExtractPlugin(),
         ]
