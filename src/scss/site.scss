@@ -1,5 +1,7 @@
 @use "sass:map";
 
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
 // bootstrap variables
 $enable-print-styles: false;
 
@@ -12,6 +14,13 @@ $color-border: map.get($theme-colors, "secondary");
 $top-spacing: $spacer;
 
 $section-spacing: $top-spacing * 1.25;
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Josefin Sans', $font-family-sans-serif;
+}
 
 body.pdf,
 body.pdf h1,
