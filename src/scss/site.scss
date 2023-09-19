@@ -1,7 +1,5 @@
 @use "sass:map";
 
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-
 // bootstrap variables
 $enable-print-styles: false;
 
@@ -15,6 +13,16 @@ $top-spacing: $spacer;
 
 $section-spacing: $top-spacing * 1.25;
 
+body.pdf,
+body.pdf h1,
+body.pdf h2,
+body.pdf h3,
+body.pdf h4,
+body.pdf h5,
+body.pdf h6 {
+    font-family: Helvetica, Arial !important;
+}
+
 @page {
     size: A4 portrait;
 }
@@ -27,14 +35,6 @@ body {
     background-color: $color-background;
     color: $color-font;
 }
-
-h1,
-h2,
-h3,
-h4 {
-    font-family: 'Josefin Sans';
-}
-
 
 #page-container {
     min-height: 100vh;

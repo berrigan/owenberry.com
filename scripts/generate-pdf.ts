@@ -11,9 +11,7 @@ const resumeFolder = `${dist}resume/`;
 const resumePath = `${resumeFolder}resume.pdf`;
 
 async function mkDirIfNotExists(folder: string): Promise<void> {
-    console.log('if (!fsOld.existsSync(folder)) {', !fsOld.existsSync(folder));
     if (!fsOld.existsSync(folder)) {
-        console.log('mkdir - ', folder);
         await fs.mkdir(folder);
     }
 }
@@ -29,16 +27,13 @@ async function renderHtml(httpUrl: string): Promise<void> {
         browser = await puppeteer.launch({
             executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
             headless: true,
-            
         });
         const page = await browser.newPage();
         page.setUserAgent('PUP_OB');
         await page.goto(httpUrl, { waitUntil: 'networkidle0' });
-         // Set screen size
-        // await page.setViewport({
-        //     width: 1920,
-        //     height: 1080,
-        // });
+        await page.evaluate(() => {
+            document.body.classList.add('pdf');
+        });
         await page.emulateMediaType('print');
         const pdfBuffer = await page.pdf({
             format: 'A4',

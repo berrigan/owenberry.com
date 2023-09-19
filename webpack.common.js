@@ -1,13 +1,16 @@
+const webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
 
 let path = require('path');
 
+/**
+ * @param {unknown} env
+ * @returns {webpack.Configuration}
+ */
 module.exports = (env) => {
-
     env = env || {};
-
     return {
         entry: {
             static_app: './src/js/static_app.js'

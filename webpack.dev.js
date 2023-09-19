@@ -1,24 +1,23 @@
+let path = require('path');
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-let path = require('path');
-
+/**
+ * @param {unknown} env 
+ * @returns {webpack.Configuration}
+ */
 module.exports = (env) => {
-
     let commonConfig = common(env);
-
-    const devConfig = {
+    return merge(commonConfig, {
         mode: 'development',
         devtool: 'inline-source-map',
         devServer: {
             static: path.join(__dirname, 'docs'),
             compress: true,
             port: 8000,
+            allowedHosts: 'auto',
             liveReload: true,
-            // inline: true
-        }
-    };
-
-    // @ts-ignore
-    return merge(commonConfig, devConfig);
+        },
+    });
 };

@@ -2,15 +2,13 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-// CLEAN up old builds first too ... maybe move into fuller script??
-
-// "build": "webpack -p --env.production --config webpack.prod.js && ./node_modules/.bin/ts-node ./scripts/generate-pdf.ts",
-
+/**
+ * @param {unknown} env
+ * @returns {webpack.Configuration}
+ */
 module.exports = (env) => {
-
     let commonConfig = common(env);
-
-    const prodConfig = {
+    return merge(commonConfig, {
         mode: 'production',
         devtool: 'source-map',
         plugins: [
@@ -20,8 +18,5 @@ module.exports = (env) => {
                 }
             })
         ]
-    };
-
-    // @ts-ignore
-    return merge(commonConfig, prodConfig);
+    });
 };
