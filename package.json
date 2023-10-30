@@ -6,7 +6,7 @@
     "update-sites": "./node_modules/.bin/ts-node ./scripts/update-sites.ts",
     "static-build": "./node_modules/.bin/ts-node ./scripts/static-build.ts",
     "pdf": "DIRECT_RUN=true ./node_modules/.bin/ts-node ./scripts/generate-pdf.ts",
-    "serve": "webpack serve --open --config webpack.dev.js",
+    "dev": "webpack serve --open --config webpack.dev.js",
     "build": "./node_modules/.bin/ts-node ./scripts/build.ts",
     "webpack": "webpack --config webpack.prod.js"
   },
