@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const miniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 let path = require('path');
 
@@ -12,8 +12,17 @@ let path = require('path');
 module.exports = (env) => {
     env = env || {};
     return {
+        context: path.resolve(__dirname, 'src'),
+        resolve: {
+            modules: [
+                path.resolve(__dirname, 'src'),
+                'node_modules'
+            ],
+            preferRelative: true,
+        },
         entry: {
-            static_app: './src/js/static_app.js'
+            home: ['pages/home/home.js', 'pages/home/home.scss'],
+            about: ['pages/about/about.js', 'pages/about/about.scss'],
         },
         output: {
             filename: '[name].[chunkhash].bundle.js',
@@ -23,7 +32,7 @@ module.exports = (env) => {
             rules: [{
                 test: /\.scss$/,
                 use: [
-                    miniCssExtractPlugin.loader,
+                    MiniCssExtractPlugin.loader,
                     // Translates CSS into CommonJS
                     "css-loader",
                     // Compiles Sass to CSS
@@ -44,9 +53,18 @@ module.exports = (env) => {
                 ],
             }),
             new HtmlWebpackPlugin({
-                template: './src/index.html'
+                template: 'pages/home/home.html',
+                chunks: ['home'],
+                filename: 'index.html',
             }),
-            new miniCssExtractPlugin(),
+            new HtmlWebpackPlugin({
+                template: 'pages/about/about.html',
+                chunks: ['about'],
+                filename: 'about.html',
+            }),
+            new MiniCssExtractPlugin({
+                filename: '[name].[chunkhash].css'
+            }),
         ]
     };
 

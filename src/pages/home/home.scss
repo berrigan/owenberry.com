@@ -1,80 +1,14 @@
-@use "sass:map";
+@use "scss/shared";
 
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-
-// bootstrap variables
-$enable-print-styles: false;
-
-// @import "~bootstrap/scss/bootstrap.scss";
-
-$top-spacing: 1rem !default;
-
-// copied from BOOTSTRAP - Font
-$font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-
-// copied from BOOTSTRAP - Breakpoints
-// Breakpoints are defined as a map of (name: minimum width), order from small to large:
-// (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
-$breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px) !default;
-@import "breakpoints_media";
-
-// copied from BOOTSTRAP - Colors
-// map.get($theme-colors, "light");     -> $gray-100 !default; -> #f8f9fa
-// map.get($theme-colors, "dark");      -> $gray-900 !default; -> #212529
-// map.get($theme-colors, "secondary"); -> $gray-600 !default; -> #6c757d
-$color-background: #f8f9fa !default;
-$color-font: #212529 !default;
-$color-border: #6c757d !default;
-
-// copied from BOOTSTRAP - $spacer
-$spacer: 1rem !default;
-$top-spacing: $spacer;
-$section-spacing: $top-spacing * 1.25;
-
-
-// PDF UPDATES
-body.pdf,
-body.pdf h1,
-body.pdf h2,
-body.pdf h3,
-body.pdf h4,
-body.pdf h5,
-body.pdf h6 {
-    font-family: Helvetica, Arial !important;
+.page > section {
+    padding: .5rem;
 }
 
-@page {
-    size: A4 portrait;
-}
-
-html {
-    background-color: $color-background;
-}
-
-body {
-    font-family: $font-family-sans-serif;
-    background-color: $color-background;
-    color: $color-font;
-    margin: 0;
-}
-
-h1,
-h2,
-h3,
-h4 {
-    font-family: 'Josefin Sans', $font-family-sans-serif;
-}
-
-#page-container {
-    min-height: 100vh;
+.page {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: left;
-}
-
-#page-container > section {
-    padding: .5rem;
 }
 
 #personal-info {
@@ -92,20 +26,20 @@ h4 {
     display: none;
 }
 
-@include media-breakpoint-down(md) {
-    #page-container {
+@include shared.media-breakpoint-down(md) {
+    .page {
         flex-direction: column;
     }
 }
 
-@include media-breakpoint-up(sm) {
+@include shared.media-breakpoint-up(sm) {
     #site-name {
         font-size: 3.6vw;
         margin: 1rem 0;
     }
 
     #resume-content {
-        border-left: 1px solid $color-border;
+        border-left: 1px solid shared.$color-border;
         min-height: calc(100vh - 1rem);
     }
 
@@ -114,7 +48,7 @@ h4 {
     }
 }
 
-@include media-breakpoint-down(xs) {
+@include shared.media-breakpoint-down(xs) {
     #personal-info {
         text-align: left;
     }
@@ -173,10 +107,10 @@ h4 {
 
 .list-section {
 
-    margin-top: calc($section-spacing / 2);
+    margin-top: calc(shared.$section-spacing / 2);
 
     +.list-section {
-        margin-top: $section-spacing;
+        margin-top: shared.$section-spacing;
     }
 
     ul {
@@ -186,7 +120,7 @@ h4 {
         }
 
         li+li {
-            margin-top: calc($spacer / 4);
+            margin-top: calc(shared.$spacer / 4);
         }
 
         p {
@@ -214,14 +148,14 @@ h4 {
 
     ul {
         li+li {
-            margin-top: calc($spacer / 2);
+            margin-top: calc(shared.$spacer / 2);
         }
     }
 }
 
 .previous-work {
 
-    margin-top: $section-spacing;
+    margin-top: shared.$section-spacing;
 
     .previous-work-item {
 

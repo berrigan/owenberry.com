@@ -1,15 +1,25 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "alwaysStrict": false,
+        "alwaysStrict": true,
         "allowSyntheticDefaultImports": false,
         "checkJs": true,
+        "module": "Nodenext",
         "moduleResolution": "NodeNext",
         "target": "es2015",
         "typeRoots": [
             "node_modules/@types"
-        ]
+        ],
+        "noEmit": true,
+        "paths": {
+            "js/*": ["./src/js/*"],
+            "scss/*": ["./src/scss/*"],
+            "pages/*": ["./src/pages/*"],
+        }
     },
+    "include": [
+        "src/**/*",
+    ],
     "typeAcquisition": {
         "enable": true
     }    
