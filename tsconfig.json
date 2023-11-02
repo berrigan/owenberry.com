@@ -2,10 +2,11 @@
     "compilerOptions": {
         "allowJs": true,
         "alwaysStrict": true,
-        "allowSyntheticDefaultImports": false,
+        "allowSyntheticDefaultImports": true,
         "checkJs": true,
         "module": "Nodenext",
         "moduleResolution": "NodeNext",
+        "esModuleInterop": true,
         "target": "es2015",
         "typeRoots": [
             "node_modules/@types"

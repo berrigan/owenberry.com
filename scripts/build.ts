@@ -1,10 +1,10 @@
 import * as fs from 'fs/promises';
-import * as webpack from 'webpack';
-import * as WebpackDevServer from 'webpack-dev-server';
+import { default as webpack } from 'webpack';
+import { default as WebpackDevServer } from 'webpack-dev-server';
 import renderPdf from './generate-pdf';
 
-import * as fnDevConfig from '../webpack.dev';
-import * as fnProdConfig from '../webpack.prod';
+import { default as fnDevConfig } from '../webpack.dev';
+import { default as fnProdConfig } from '../webpack.prod';
 
 async function generatePdf() {
     console.log('Starting WebpackDevServer ..');
