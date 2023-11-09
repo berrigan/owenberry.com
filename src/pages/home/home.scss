@@ -26,6 +26,11 @@
     display: none;
 }
 
+#site-name {
+    font-size: 3rem;
+    font-size: clamp(3rem, 7vw, 5.2rem);
+}
+
 @include shared.media-breakpoint-down(md) {
     .page {
         flex-direction: column;
@@ -34,7 +39,6 @@
 
 @include shared.media-breakpoint-up(sm) {
     #site-name {
-        font-size: 3.6vw;
         margin: 1rem 0;
     }
 
