@@ -2,6 +2,7 @@ const webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { fileLoaderRule, scssLoaderRules } = require('./webpack.rules')
 
 let path = require('path');
 
@@ -29,21 +30,10 @@ module.exports = (env) => {
             path: path.resolve(__dirname, 'docs')
         },
         module: {
-            rules: [{
-                test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    // Translates CSS into CommonJS
-                    "css-loader",
-                    // Compiles Sass to CSS
-                    "sass-loader",
-                ],
-            }, {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ]
-            }]
+            rules: [
+                fileLoaderRule, 
+                scssLoaderRules.prod,
+            ]
         },
         plugins: [
             new CleanWebpackPlugin({

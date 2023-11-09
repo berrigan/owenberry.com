@@ -45,8 +45,8 @@ body.pdf h6 {
     size: A4 portrait;
 }
 
-html {
-    background-color: $color-background;
+html * {
+    box-sizing: border-box;
 }
 
 body {

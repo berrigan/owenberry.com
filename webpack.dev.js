@@ -1,7 +1,8 @@
 let path = require('path');
 const webpack = require('webpack');
-const { merge } = require('webpack-merge');
+const { mergeWithCustomize, customizeObject } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const { fileLoaderRule, scssLoaderRules } = require('./webpack.rules')
 
 /**
  * @param {unknown} env 
@@ -9,7 +10,9 @@ const common = require('./webpack.common.js');
  */
 module.exports = (env) => {
     let commonConfig = common(env);
-    return merge(commonConfig, {
+
+    /** @type {webpack.Configuration} */
+    const devConfig = {
         mode: 'development',
         devtool: 'inline-source-map',
         devServer: {
@@ -17,7 +20,19 @@ module.exports = (env) => {
             compress: true,
             port: 8000,
             allowedHosts: 'auto',
-            liveReload: true,
+            hot: true,
         },
-    });
+        module: {
+            rules: [
+                fileLoaderRule,
+                scssLoaderRules.dev,
+            ]
+        }
+    };
+
+    return mergeWithCustomize({
+        customizeObject: customizeObject({
+            module: 'replace',
+        })
+    })(commonConfig, devConfig);
 };
