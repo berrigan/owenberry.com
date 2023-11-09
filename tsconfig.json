@@ -16,7 +16,9 @@
             "js/*": ["./src/js/*"],
             "scss/*": ["./src/scss/*"],
             "pages/*": ["./src/pages/*"],
-        }
+        },
+        "baseUrl": "./src",
+        
     },
     "include": [
         "src/**/*",
