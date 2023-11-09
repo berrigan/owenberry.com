@@ -1,7 +1,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { RuleSetRule } = require('webpack');
 
-/** @type {RuleSetRule} */
+/** @typedef {import("webpack").RuleSetRule} RuleSetRule */
+
+/** @type { RuleSetRule } */
 const fileLoaderRule = {
     test: /\.(png|svg|jpg|gif)$/,
     use: [
