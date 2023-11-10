@@ -1,7 +1,7 @@
 @use "scss/shared";
 
 .page > section {
-    padding: .5rem;
+    padding: 1rem;
 }
 
 .page {
@@ -14,7 +14,7 @@
 #personal-info {
     width: 600px;
     max-width: 600px;
-    flex: 0 0 600px;
+    flex: 1 1 600px;
 }
 
 #resume-content {
@@ -27,28 +27,30 @@
 }
 
 #site-name {
-    font-size: 3rem;
-    font-size: clamp(3rem, 7vw, 5.2rem);
+    font-size: 2.5rem;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    margin: .5rem 0 1rem 0;
+}
+
+#personal-info .align-right {
+    text-align: right;
 }
 
 @include shared.media-breakpoint-down(md) {
     .page {
         flex-direction: column;
     }
+    #personal-info, #resume-content {
+        width: 100%;
+        max-width: initial;
+        flex: 1 1 auto;
+    }
 }
 
 @include shared.media-breakpoint-up(sm) {
-    #site-name {
-        margin: 1rem 0;
-    }
-
     #resume-content {
         border-left: 1px solid shared.$color-border;
         min-height: calc(100vh - 1rem);
-    }
-
-    #personal-info .align-right {
-        text-align: right;
     }
 }
 
