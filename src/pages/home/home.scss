@@ -115,21 +115,22 @@
 
     margin-top: calc(shared.$section-spacing / 2);
 
-    +.list-section {
+    + .list-section {
         margin-top: shared.$section-spacing;
     }
 
-    ul {
+    > ul {
 
-        li {
+        > li {
             line-height: 1.4;
         }
 
-        li+li {
+        > li + li {
             margin-top: calc(shared.$spacer / 4);
         }
 
         p {
+            margin-top: 0;
             margin-bottom: .2rem;
         }
 
@@ -166,11 +167,17 @@
     .previous-work-item {
 
         padding-left: 1rem;
+        border-bottom: 1px solid grey;
+
+        & + .previous-work-item {
+            margin-top: 1rem;
+        }
 
         .list-section {
             padding-left: 1rem;
 
-            ul {
+            > ul {
+                margin: .6rem auto .8rem auto;
                 padding-left: 0;
                 font-size: .8rem;
                 list-style: none;
@@ -187,7 +194,6 @@
                 font-weight: 600;
                 margin-bottom: 0.1rem;
                 line-height: 1.2rem;
-
                 h4 {
                     display: inline-block;
                 }
@@ -197,16 +203,37 @@
                 font-size: 1.2rem;
             }
 
-            ul {
-                li {
+            > ul {
+                > li {
                     margin-bottom: 1rem;
-
-                    h4 {
-                        font-size: 1rem;
-                    }
                 }
             }
 
+            .previous-work-item-project-sub-info {
+                padding-left: 1rem;
+                margin-bottom: .5rem;
+                h5 {
+                    margin: .5em auto 0 auto;
+                }
+                > ul {
+                    list-style-type: disc;
+                    padding-left: 1rem;
+                }
+            }
         }
+
+        &#previous-work-canva {
+            .previous-work-item-projects {
+                > ul {
+                    > li {
+                        margin: 0 auto;
+                    }
+                    > li + li {
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+
     }
 }
