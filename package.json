@@ -1,14 +1,16 @@
 {
   "name": "owenberry.com-main",
+  "license": "ISC",
+  "author": "Owen Berry",
   "version": "1.0.0",
   "description": "owenberry.com personal website",
   "scripts": {
     "update-sites": "./node_modules/.bin/ts-node ./scripts/update-sites.ts",
     "static-build": "./node_modules/.bin/ts-node ./scripts/static-build.ts",
-    "pdf": "DIRECT_RUN=true ./node_modules/.bin/ts-node ./scripts/generate-pdf.ts",
-    "dev": "webpack serve --open --config webpack.dev.js",
-    "build": "./node_modules/.bin/ts-node ./scripts/build.ts",
-    "webpack": "webpack --config webpack.prod.js"
+    "pdf": "DIRECT_RUN=true ./node_modules/.bin/ts-node --transpileOnly ./scripts/generate-pdf.ts",
+    "dev": "webpack serve --open --config webpack.dev-js.js",
+    "build": "./node_modules/.bin/ts-node --transpileOnly ./scripts/build.ts",
+    "webpack": "webpack --config webpack.prod-js.js"
   },
   "devDependencies": {
     "@types/clean-webpack-plugin": "^0.1.3",
@@ -23,12 +25,14 @@
     "css-loader": "^6.8.1",
     "electron": "^25.2.0",
     "file-loader": "^6.2.0",
+    "finalhandler": "^1.2.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "nodemon": "^2.0.22",
     "puppeteer-core": "^20.8.1",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
+    "serve-static": "^1.15.0",
     "style-loader": "^3.3.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
@@ -37,6 +41,7 @@
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.9.0"
   },
-  "author": "Owen Berry",
-  "license": "ISC"
+  "browser": {
+    "[module-name]": false   
+  }
 }

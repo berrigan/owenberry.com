@@ -1,17 +1,19 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+import type webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-/** @typedef {import("webpack").RuleSetRule} RuleSetRule */
+type EnvironmentRuleSetRules = {
+    dev: webpack.RuleSetRule;
+    prod: webpack.RuleSetRule;
+}
 
-/** @type { RuleSetRule } */
-const fileLoaderRule = {
+export const fileLoaderRule: webpack.RuleSetRule = {
     test: /\.(png|svg|jpg|gif)$/,
     use: [
         'file-loader'
     ]
 };
 
-/** @type {{ prod: RuleSetRule, dev: RuleSetRule }} */
-const scssLoaderRules = {
+export const scssLoaderRules: EnvironmentRuleSetRules = {
     prod: {
         test: /\.scss$/,
         use: [
@@ -30,9 +32,4 @@ const scssLoaderRules = {
             "sass-loader",
         ],
     },
-};
-
-module.exports = {
-    fileLoaderRule,
-    scssLoaderRules,
 };

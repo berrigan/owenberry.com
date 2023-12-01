@@ -1,25 +1,20 @@
-const webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { fileLoaderRule, scssLoaderRules } = require('./webpack.rules')
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { fileLoaderRule, scssLoaderRules } from './webpack.rules';
 
-let path = require('path');
-
-/**
- * @param {unknown} env
- * @returns {webpack.Configuration}
- */
-module.exports = (env) => {
+function webpackConfig(env: any): webpack.Configuration {
     env = env || {};
     return {
-        context: path.resolve(__dirname, 'src'),
+        context: path.join(__dirname, 'src'),
         resolve: {
             modules: [
-                path.resolve(__dirname, 'src'),
+                path.join(__dirname, 'src'),
                 'node_modules'
             ],
-            preferRelative: true,
+            preferRelative: true
         },
         entry: {
             home: ['pages/home/home.js', 'pages/home/home.scss'],
@@ -39,7 +34,6 @@ module.exports = (env) => {
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: [
                     '**/*',
-                    '!resume/**',
                 ],
             }),
             new HtmlWebpackPlugin({
@@ -47,20 +41,16 @@ module.exports = (env) => {
                 chunks: ['home'],
                 filename: 'index.html',
             }),
-            new HtmlWebpackPlugin({
-                template: 'pages/about/about.html',
-                chunks: ['about'],
-                filename: 'about.html',
-            }),
+            // new HtmlWebpackPlugin({
+            //     template: 'pages/about/about.html',
+            //     chunks: ['about'],
+            //     filename: 'about.html',
+            // }),
             new MiniCssExtractPlugin({
                 filename: '[name].[chunkhash].css'
             }),
         ]
     };
+}
 
-};
-
-
-
-
-
+export default webpackConfig;

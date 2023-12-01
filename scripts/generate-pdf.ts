@@ -57,7 +57,7 @@ async function renderHtml(httpUrl: string): Promise<void> {
     }
 }
 
-export default function renderPdf(): Promise<void> {
+export function renderPdf(): Promise<void> {
     return renderHtml(pdfUrl);
 }
 

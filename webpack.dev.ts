@@ -1,18 +1,13 @@
-let path = require('path');
-const webpack = require('webpack');
-const { mergeWithCustomize, customizeObject } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const { fileLoaderRule, scssLoaderRules } = require('./webpack.rules')
+import type webpack from 'webpack';
+import 'webpack-dev-server';
+import path from 'path';
+import { mergeWithCustomize, customizeObject } from 'webpack-merge';
+import common from './webpack.common';
+import { fileLoaderRule, scssLoaderRules } from './webpack.rules';
 
-/**
- * @param {unknown} env 
- * @returns {webpack.Configuration}
- */
-module.exports = (env) => {
-    let commonConfig = common(env);
-
-    /** @type {webpack.Configuration} */
-    const devConfig = {
+function fndDevWebpackConfig(env: any): webpack.Configuration {
+    const commonConfig = common(env);
+    const devConfig: webpack.Configuration = {
         mode: 'development',
         devtool: 'inline-source-map',
         devServer: {
@@ -29,10 +24,12 @@ module.exports = (env) => {
             ]
         }
     };
-
-    return mergeWithCustomize({
+    const merged = mergeWithCustomize({
         customizeObject: customizeObject({
             module: 'replace',
         })
     })(commonConfig, devConfig);
-};
+    return merged;
+}
+
+export default fndDevWebpackConfig;
