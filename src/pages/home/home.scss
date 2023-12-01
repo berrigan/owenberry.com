@@ -12,14 +12,13 @@
 }
 
 #personal-info {
-    width: 600px;
-    max-width: 600px;
-    flex: 1 1 600px;
+    max-width: 30rem;
+    flex: 0 1;
 }
 
 #resume-content {
-    max-width: 800px;
-    flex: 1 1 800px;
+    max-width: 45rem;
+    flex: 1 1;
 }
 
 .resume-only {
@@ -28,12 +27,18 @@
 
 #site-name {
     font-size: 2.5rem;
-    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-size: clamp(2.5rem, 10vw, 4rem);
     margin: .5rem 0 1rem 0;
 }
 
 #personal-info .align-right {
     text-align: right;
+}
+
+.development-area-list ul {
+    list-style: none;
+    padding-left: 0;
+    font-weight: bold;
 }
 
 @include shared.media-breakpoint-down(md) {
