@@ -14,13 +14,16 @@
 }
 
 #personal-info {
+    width: 0;
     max-width: 30rem;
-    flex: 0 1;
+    flex: 3 1;
+    container: personal-info / inline-size;
 }
 
 #resume-content {
+    width: 0;
     max-width: 45rem;
-    flex: 1 1;
+    flex: 5 1;
 }
 
 .resume-only {
@@ -28,9 +31,10 @@
 }
 
 #site-name {
-    font-size: 2.5rem;
-    font-size: clamp(2.5rem, 10vw, 4rem);
-    margin: .5rem 0 1rem 0;
+    font-size: 2.4rem;
+    font-size: clamp(2.3rem, 4.8vw, 3.9rem);
+    font-size: 14cqi;
+    margin: .5rem 0 .5rem 0;
 }
 
 #personal-info .align-right {
@@ -52,6 +56,21 @@
         max-width: initial;
         flex: 1 1 auto;
     }
+    #personal-info {
+        padding-bottom: 0;
+    }
+    #resume-content {
+        padding-top: 0;
+    }
+    #site-name {
+        --font-size-cqi: 12;
+        --margin-left-right-combined: 32px;
+        --scrollbar-width: 16px; /* is about right for browser showing width taking scrollbars, but not overlaid scrollbars */
+        --font-size-cqi-percent: calc(var(--font-size-cqi) / 100);
+        /* adjust for 16px margin on each side, but not going to fix scrollbar so easy because of VW scrollbar issues */
+        font-size: calc(var(--font-size-cqi) * 1vw - (var(--margin-left-right-combined) * var(--font-size-cqi-percent)) - (var(--scrollbar-width) * var(--font-size-cqi-percent)));
+        font-size: calc(var(--font-size-cqi) * 1cqw);
+    }
 }
 
 @include shared.media-breakpoint-up(sm) {
@@ -69,6 +88,11 @@
 
 
 @media print {
+
+    #site-name {
+        font-size: 13cqi;
+    }
+
     #site-name-subheading {
         font-size: 0.9rem;
     }
