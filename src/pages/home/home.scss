@@ -19,6 +19,13 @@ $layout-ratio-pdf: (
   left: 44,
   right: 55,
 );
+/* https://www.compart.com/en/unicode/category/Pd */
+$dashes: (
+    hyphen: "-",
+    wave: "\301C",
+    en: "\2013",
+    em-small: "\FE58",
+);
 
 .page > section {
     padding: 1rem;
@@ -51,7 +58,7 @@ ul.style-dashed {
         align-items: center;
     }
     & > li:before {
-        content: '-';
+        content: map.get($dashes, em-small);
         font-weight: 600;
         display: inline-block;
         margin-right: $style-dashed-marker-margin;
