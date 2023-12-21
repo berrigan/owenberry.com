@@ -1,6 +1,9 @@
 @use "sass:map";
 @use "scss/shared";
 
+$style-dashed-marker-size: 1rem;
+$style-dashed-marker-margin: .2rem;
+
 @function layout-ratio-total-parts($lf-ratio-map) {
     @return map.get($lf-ratio-map, "left") + map.get($lf-ratio-map, "right");
 }
@@ -8,14 +11,13 @@
     $layout-ratio-total-parts: layout-ratio-total-parts($lf-ratio-map);
     @return calc(map.get($lf-ratio-map, $side) / $layout-ratio-total-parts * 100);
 }
-
 $layout-ratio: (
   left: 3,
   right: 5,
 );
 $layout-ratio-pdf: (
-  left: 40,
-  right: 60,
+  left: 44,
+  right: 55,
 );
 
 .page > section {
@@ -31,6 +33,34 @@ $layout-ratio-pdf: (
     margin: 0 auto;
 }
 
+ul.style-none {
+    list-style-type: none;
+    padding-left: 0;
+
+    & > li {
+        margin-top: .25rem;
+    }
+}
+
+ul.style-dashed {
+    list-style-type: none;
+    padding-left: 0;
+    & > li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    & > li:before {
+        content: '-';
+        font-weight: 600;
+        display: inline-block;
+        margin-right: $style-dashed-marker-margin;
+        width: $style-dashed-marker-size;
+        text-align: center;
+        flex-shrink: 0;
+    }
+}
+
 #personal-info {
     width: 0;
     max-width: 30rem;
@@ -42,6 +72,7 @@ $layout-ratio-pdf: (
     width: 0;
     max-width: 45rem;
     flex: layout-ratio-for-side($layout-ratio, "right") 1;
+    position: relative;
 }
 
 .resume-only {
@@ -71,16 +102,29 @@ $layout-ratio-pdf: (
     text-align: right;
 }
 
-ul.api-integrations-list {
-    list-style: none;
-    padding-left: 1rem;
-    > li {
-        display: inline;
-        &:after {
-            content: ', ';
-        }
-        &:last-child:after {
-            content: '';
+.api-integrations {
+
+    margin-top: .3em;
+
+    > span {
+        font-weight: bold;
+        white-space: nowrap;
+    }
+    > ul {
+        list-style: none;
+        padding-left: calc($style-dashed-marker-size + $style-dashed-marker-margin);
+        > li {
+            display: inline;
+            &:before {
+                content: '';
+                display: none;
+            }
+            &:after {
+                content: ', ';
+            }
+            &:last-child:after {
+                content: '';
+            }
         }
     }
 }
@@ -108,9 +152,20 @@ ul.api-integrations-list {
 
     margin-top: shared.$section-spacing;
 
+    /* reset */
+    ul.reset > li {
+        display: block;
+        &:before {
+            content: '';
+            display: none;
+        }
+    }
+
     .previous-work-item {
-        padding-left: 1rem;
-        margin-top: 1rem;
+
+        & > h3:first-child {
+            margin-top: 0.5rem;
+        }
 
         & + .previous-work-item {
             margin-top: 1rem;
@@ -120,7 +175,7 @@ ul.api-integrations-list {
             padding-left: 1rem;
 
             > ul {
-                margin: .6rem auto .8rem auto;
+                margin: .4rem auto .8rem auto;
                 padding-left: 0;
                 font-size: .8rem;
                 list-style: none;
@@ -128,7 +183,19 @@ ul.api-integrations-list {
         }
 
         .previous-work-item-experience {
+            $font-size: 0.9rem;
+
             margin-top: 0;
+            padding-left: 0;
+            font-size: $font-size;
+
+            & ul {
+                font-size: $font-size;
+                align-items: start;
+            }
+            & ul li {
+                margin-top: 0;
+            }
         }
 
         .previous-work-item-projects {
@@ -137,16 +204,34 @@ ul.api-integrations-list {
                 font-weight: 600;
                 margin-top: 0.3rem;
                 margin-bottom: 0.1rem;
-                line-height: 1.2rem;
+
                 h5 {
-                    margin-top: 0;
+                    margin: 0;
                     display: inline-block;
+                    line-height: normal;
+                }
+                > .project-title-links {                    
+                    margin-left: .4em;
+                    font-size: .9em;
+
+                    display: inline-flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    vertical-align: top;
+
+                    > a {
+                        white-space: nowrap;
+                        & + a {
+                            margin-left: .8em;
+                        }
+                    }
                 }
             }
 
             > ul {
                 > li {
-                    margin-bottom: 1rem;
+                    margin-bottom: .4em;
                 }
             }
 
@@ -156,9 +241,9 @@ ul.api-integrations-list {
                 h5 {
                     margin: .5em auto 0 auto;
                 }
-                > ul {
-                    list-style-type: disc;
-                    padding-left: 1rem;
+                & > ul > li > span:first-of-type {
+                    white-space: nowrap;
+                    margin-right: 1em;
                 }
             }
         }
@@ -166,9 +251,6 @@ ul.api-integrations-list {
         &#previous-work-canva {
             .previous-work-item-projects {
                 > ul {
-                    > li {
-                        margin: 0 auto;
-                    }
                     > li + li {
                         margin: 0 auto;
                     }
@@ -208,8 +290,17 @@ ul.api-integrations-list {
 
 @include shared.media-breakpoint-up(sm) {
     #resume-content-right {
-        border-left: 1px solid shared.$color-border;
         min-height: calc(100vh - 1rem);
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 1px;
+            top: 0;
+            bottom: 0;
+            left: -0.5px;
+            background-color: shared.$color-border;
+        }
     }
 }
 

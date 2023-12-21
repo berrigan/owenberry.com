@@ -6,7 +6,7 @@
 $breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px) !default;
 @forward "breakpoints";
 
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
 // bootstrap variables
 $enable-print-styles: false;
@@ -17,12 +17,9 @@ $top-spacing: 1rem !default;
 $font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
 // copied from BOOTSTRAP - Colors
-// map.get($theme-colors, "light");     -> $gray-100 !default; -> #f8f9fa
-// map.get($theme-colors, "dark");      -> $gray-900 !default; -> #212529
-// map.get($theme-colors, "secondary"); -> $gray-600 !default; -> #6c757d
-$color-background: #f8f9fa !default;
-$color-font: #212529 !default;
-$color-border: #6c757d !default;
+$color-background: #f8f8f8 !default;
+$color-font: #222222 !default;
+$color-border: rgba(0, 0, 0, 0.2) !default;
 
 // copied from BOOTSTRAP - $spacer
 $spacer: 1rem !default;
@@ -38,7 +35,15 @@ body.pdf h3,
 body.pdf h4,
 body.pdf h5,
 body.pdf h6 {
-    font-family: Helvetica, Arial !important;
+    font-family: Arial !important;
+}
+body.pdf h1,
+body.pdf h2,
+body.pdf h3,
+body.pdf h4,
+body.pdf h5,
+body.pdf h6 {
+    font-weight: 550;
 }
 
 @page {
@@ -75,7 +80,7 @@ h5 {
     margin: 1em 0 .3em 0;
     margin-top: min(1em, 1.4rem);
 }
-h1, h2 {
+h1, h2, h3 {
     margin-top: .7em;
     margin-top: min(.7em, 1.4rem);
 }
@@ -87,11 +92,18 @@ h4 { font-size: 1rem; }
 h5 { font-size: .9rem; }
 h6 { font-size: .8rem; }
 
+body.pdf h1 { font-size: 2.5rem; }
+body.pdf h2 { font-size: 1.3rem; }
+body.pdf h3 { font-size: 1.1rem; }
+body.pdf h4 { font-size: 0.95rem; }
+body.pdf h5 { font-size: 0.85rem; }
+body.pdf h6 { font-size: 0.8rem; }
+
 ul, ol {
     font-size: 0.8rem;
     margin: 0;
+    padding-left: 1.2rem;
 }
-
 
 .list-section {
     margin-top: calc($section-spacing / 3);
