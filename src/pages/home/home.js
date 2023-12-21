@@ -26,3 +26,11 @@ if (document.readyState === 'complete') {
 } else {
     document.addEventListener('DOMContentLoaded', onReady);
 }
+
+// @ts-ignore
+window._debug = Object.assign({}, window._debug, {
+    debugPdf: () => {
+        commonInit({ forcePdfBuild: true })
+        homePdfContentTweaks();
+    },
+});

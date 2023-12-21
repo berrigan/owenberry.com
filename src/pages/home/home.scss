@@ -1,4 +1,22 @@
+@use "sass:map";
 @use "scss/shared";
+
+@function layout-ratio-total-parts($lf-ratio-map) {
+    @return map.get($lf-ratio-map, "left") + map.get($lf-ratio-map, "right");
+}
+@function layout-ratio-for-side($lf-ratio-map, $side) {
+    $layout-ratio-total-parts: layout-ratio-total-parts($lf-ratio-map);
+    @return calc(map.get($lf-ratio-map, $side) / $layout-ratio-total-parts * 100);
+}
+
+$layout-ratio: (
+  left: 3,
+  right: 5,
+);
+$layout-ratio-pdf: (
+  left: 40,
+  right: 60,
+);
 
 .page > section {
     padding: 1rem;
@@ -16,14 +34,14 @@
 #personal-info {
     width: 0;
     max-width: 30rem;
-    flex: 3 1;
+    flex: layout-ratio-for-side($layout-ratio, "left") 1;
     container: personal-info / inline-size;
 }
 
 #resume-content-right {
     width: 0;
     max-width: 45rem;
-    flex: 5 1;
+    flex: layout-ratio-for-side($layout-ratio, "right") 1;
 }
 
 .resume-only {
@@ -34,17 +52,23 @@
     font-size: 2.4rem;
     font-size: clamp(2.3rem, 4.8vw, 3.9rem);
     font-size: 14cqi;
-    margin: .5rem 0 .5rem 0;
+    margin: .4rem 0 0 0;
 }
+
+#site-name-subheading {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    > span + span {
+        margin-left: .6rem;
+    }
+}
+
 
 #personal-info .align-right {
     text-align: right;
-}
-
-.development-area-list ul {
-    list-style: none;
-    padding-left: 0;
-    font-weight: bold;
 }
 
 ul.api-integrations-list {
@@ -60,6 +84,101 @@ ul.api-integrations-list {
         }
     }
 }
+
+.development-area-list > ul {
+    list-style: none;
+    padding-left: 0;
+    font-weight: bold;
+
+    & > li + li {
+        margin-top: 0;
+    }
+}
+
+
+// ----- SECTIONS --------
+
+#left-sidebar {
+    ul {
+        padding-left: 1.4rem;
+    }
+}
+
+.previous-work {
+
+    margin-top: shared.$section-spacing;
+
+    .previous-work-item {
+        padding-left: 1rem;
+        margin-top: 1rem;
+
+        & + .previous-work-item {
+            margin-top: 1rem;
+        }
+
+        .list-section {
+            padding-left: 1rem;
+
+            > ul {
+                margin: .6rem auto .8rem auto;
+                padding-left: 0;
+                font-size: .8rem;
+                list-style: none;
+            }
+        }
+
+        .previous-work-item-experience {
+            margin-top: 0;
+        }
+
+        .previous-work-item-projects {
+
+            .project-title {
+                font-weight: 600;
+                margin-top: 0.3rem;
+                margin-bottom: 0.1rem;
+                line-height: 1.2rem;
+                h5 {
+                    margin-top: 0;
+                    display: inline-block;
+                }
+            }
+
+            > ul {
+                > li {
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .previous-work-item-project-sub-info {
+                padding-left: 1rem;
+                margin-bottom: .5rem;
+                h5 {
+                    margin: .5em auto 0 auto;
+                }
+                > ul {
+                    list-style-type: disc;
+                    padding-left: 1rem;
+                }
+            }
+        }
+
+        &#previous-work-canva {
+            .previous-work-item-projects {
+                > ul {
+                    > li {
+                        margin: 0 auto;
+                    }
+                    > li + li {
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
 
 @include shared.media-breakpoint-down(md) {
     .page {
@@ -100,11 +219,23 @@ ul.api-integrations-list {
     }
 }
 
-
 @media print {
 
+    .pup-ob {
+        .resume-remove {
+            display: none !important;
+        }
+
+        #personal-info {
+            flex: layout-ratio-for-side($layout-ratio-pdf, "left") 1;
+        }
+        #resume-content-right {
+            flex: layout-ratio-for-side($layout-ratio-pdf, "right") 1;
+        }
+    }
+
     #site-name {
-        font-size: 13cqi;
+        font-size: 11cqi;
     }
 
     #site-name-subheading {
@@ -124,12 +255,6 @@ ul.api-integrations-list {
         display: none !important;
     }
 
-    .pup-ob {
-        .resume-remove {
-            display: none !important;
-        }
-    }
-
     .left-side-info {
         p {
             font-size: .8rem;
@@ -142,147 +267,7 @@ ul.api-integrations-list {
 
     // move references to bottom on PDF
     #personal-info {
-
         display: flex;
         flex-direction: column;
-
-        .list-section {
-            margin-top: 0;
-        }
-
-        .references {
-            margin-top: auto;
-        }
-    }
-}
-
-
-
-// ----- SECTIONS --------
-
-.list-section {
-
-    margin-top: calc(shared.$section-spacing / 2);
-
-    + .list-section {
-        margin-top: shared.$section-spacing;
-    }
-
-    > ul {
-
-        > li {
-            line-height: 1.4;
-        }
-
-        > li + li {
-            margin-top: calc(shared.$spacer / 4);
-        }
-
-        p {
-            margin-top: 0;
-            margin-bottom: .2rem;
-        }
-
-        // sub-list
-        h4 {
-            font-size: 1rem;
-            margin-bottom: .2rem;
-        }
-
-    }
-}
-
-#left-sidebar {
-    ul {
-        padding-left: 1.4rem;
-    }
-}
-
-
-.references {
-    margin-top: 2rem;
-
-    ul {
-        li+li {
-            margin-top: calc(shared.$spacer / 2);
-        }
-    }
-}
-
-.previous-work {
-
-    margin-top: shared.$section-spacing;
-
-    .previous-work-item {
-        padding-left: 1rem;
-
-        & + .previous-work-item {
-            margin-top: 1rem;
-        }
-
-        .list-section {
-            padding-left: 1rem;
-
-            > ul {
-                margin: .6rem auto .8rem auto;
-                padding-left: 0;
-                font-size: .8rem;
-                list-style: none;
-            }
-        }
-
-        .previous-work-item-experience {
-            margin-top: 0;
-        }
-
-        .previous-work-item-projects {
-
-            .project-title {
-                font-weight: 600;
-                margin-top: 0.3rem;
-                margin-bottom: 0.1rem;
-                line-height: 1.2rem;
-                h4 {
-                    margin-top: 0;
-                    display: inline-block;
-                }
-            }
-
-            h4 {
-                font-size: 1.2rem;
-            }
-
-            > ul {
-                > li {
-                    margin-bottom: 1rem;
-                }
-            }
-
-            .previous-work-item-project-sub-info {
-                padding-left: 1rem;
-                margin-bottom: .5rem;
-                h5 {
-                    margin: .5em auto 0 auto;
-                }
-                > ul {
-                    list-style-type: disc;
-                    padding-left: 1rem;
-                }
-            }
-        }
-
-        &#previous-work-canva {
-            .previous-work-item-projects {
-                > ul {
-                    > li {
-                        margin: 0 auto;
-                    }
-                    > li + li {
-                        margin: 0 auto;
-                    }
-                }
-            }
-        }
-
     }
 }

@@ -73,7 +73,11 @@ h5,
 h5 {
     font-family: 'Josefin Sans', $font-family-sans-serif;
     margin: 1em 0 .3em 0;
-    margin-top: min(1em, 1.5rem);
+    margin-top: min(1em, 1.4rem);
+}
+h1, h2 {
+    margin-top: .7em;
+    margin-top: min(.7em, 1.4rem);
 }
 
 h1 { font-size: 2.6rem; }
@@ -86,4 +90,29 @@ h6 { font-size: .8rem; }
 ul, ol {
     font-size: 0.8rem;
     margin: 0;
+}
+
+
+.list-section {
+    margin-top: calc($section-spacing / 3);
+    + .list-section {
+        margin-top: calc($section-spacing * 3 / 4);
+    }
+    > ul {
+        > li {
+            line-height: 1.4;
+        }
+        > li + li {
+            margin-top: calc($spacer / 5);
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: .2rem;
+        }
+        // sub-list
+        h4 {
+            font-size: 1rem;
+            margin-bottom: .2rem;
+        }
+    }
 }
