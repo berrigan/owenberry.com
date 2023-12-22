@@ -7,6 +7,9 @@ import { fileLoaderRule, scssLoaderRules } from './webpack.rules';
 
 function webpackConfig(env: any): webpack.Configuration {
     env = env || {};
+    const commonHtmlWebpackPluginOptions: HtmlWebpackPlugin.Options = {
+        favicon: 'assets/favicon.opti.png',
+    };
     return {
         context: path.join(__dirname, 'src'),
         resolve: {
@@ -26,7 +29,7 @@ function webpackConfig(env: any): webpack.Configuration {
         },
         module: {
             rules: [
-                fileLoaderRule, 
+                fileLoaderRule,
                 scssLoaderRules.prod,
             ]
         },
@@ -40,11 +43,13 @@ function webpackConfig(env: any): webpack.Configuration {
                 template: 'pages/home/home.html',
                 chunks: ['home'],
                 filename: 'index.html',
+                ...commonHtmlWebpackPluginOptions,
             }),
             // new HtmlWebpackPlugin({
             //     template: 'pages/about/about.html',
             //     chunks: ['about'],
             //     filename: 'about.html',
+            //     ...commonHtmlWebpackPluginOptions,
             // }),
             new MiniCssExtractPlugin({
                 filename: '[name].[chunkhash].css'
