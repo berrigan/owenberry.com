@@ -8,7 +8,7 @@ import { fileLoaderRule, scssLoaderRules } from './webpack.rules';
 function webpackConfig(env: any): webpack.Configuration {
     env = env || {};
     const commonHtmlWebpackPluginOptions: HtmlWebpackPlugin.Options = {
-        favicon: 'assets/favicon.opti.png',
+        favicon: 'assets/favicon.tiny.png',
     };
     return {
         context: path.join(__dirname, 'src'),
