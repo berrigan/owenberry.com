@@ -9,6 +9,9 @@ function webpackConfig(env: any): webpack.Configuration {
     env = env || {};
     const commonHtmlWebpackPluginOptions: HtmlWebpackPlugin.Options = {
         favicon: 'assets/favicon.tiny.png',
+        meta: {
+            "gh-action-build-time": Date.now().toString()
+        }
     };
     return {
         context: path.join(__dirname, 'src'),
