@@ -1,3 +1,4 @@
+import type { ChromeReleaseChannel } from 'puppeteer-core';
 import puppeteer, { Browser } from 'puppeteer-core';
 import * as fsOld from 'fs';
 import * as fs from 'fs/promises';
@@ -10,6 +11,11 @@ const dist = './docs/';
 const resumeFolder = `${dist}resume/`;
 const resumePath = `${resumeFolder}resume.pdf`;
 
+const puppeteerLaunchConfig = process.env.PUPPETEER_EXECUTABLE_PATH ? {
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
+} : {
+    channel: 'chrome' as ChromeReleaseChannel
+};
 async function mkDirIfNotExists(folder: string): Promise<void> {
     if (!fsOld.existsSync(folder)) {
         await fs.mkdir(folder);
@@ -25,8 +31,8 @@ async function renderHtml(httpUrl: string): Promise<void> {
 
     try {
         browser = await puppeteer.launch({
-            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
             headless: true,
+            ...puppeteerLaunchConfig
         });
         const page = await browser.newPage();
         page.setUserAgent('PUP_OB');
@@ -39,7 +45,7 @@ async function renderHtml(httpUrl: string): Promise<void> {
             format: 'A4',
             printBackground: true,
         });
-    
+
         await Promise.all([
             fs.writeFile(pdfRenderPath, pdfBuffer),
             fs.writeFile(resumePath, pdfBuffer),
