@@ -1,0 +1,106 @@
+@use "scss/shared";
+
+$pageMarginLarge: 32px;
+$pageContainerMax: 1284px;
+$pageContainerMaxPlusMargins: calc($pageContainerMax + 2 * $pageMarginLarge);
+
+$pageMarginSmall: 24px;
+$pageContainerSmall: 600px;
+$pageContainerSmallPlusMargins: calc($pageContainerSmall + 2 * $pageMarginSmall);
+
+.page-container {
+    display: block;
+    width: 100%;
+    position: relative;
+    background: #ddd;
+
+    container-type: inline-size;
+    container-name: page;
+}
+
+.page-content {
+    --page-margin: auto;
+    width: auto;
+    max-width: $pageContainerMax;
+    margin: 0 var(--page-margin);
+    background-color: lightblue;
+}
+
+.grid-container + .grid-container {
+    margin-top: 32px;
+}
+
+.grid-container {
+    position: relative;
+    display: block;
+    font-size: 0;
+
+    container-type: inline-size;
+    container-name: grid;
+
+    --grid-gutter: 24px;
+    --grid-column-width: calc((100cqw - (11 * var(--grid-gutter))) / 12);
+    --grid-column-widths-1: var(--grid-column-width);
+    --grid-column-widths-2: calc(var(--grid-column-width) * 2 + var(--grid-gutter) * 1);
+    --grid-column-widths-3: calc(var(--grid-column-width) * 3 + var(--grid-gutter) * 2);
+    --grid-column-widths-4: calc(var(--grid-column-width) * 4 + var(--grid-gutter) * 3);
+    --grid-column-widths-6: calc(var(--grid-column-width) * 6 + var(--grid-gutter) * 5);
+}
+
+.grid-container-flex {
+    position: relative;
+    display: flex;
+    font-size: initial;
+}
+
+.grid-container-flex > [class^="grid-column-"] {
+    background-color: yellow;
+}
+.grid-container-flex > [class^="grid-column-"] + [class^="grid-column-"] {
+    margin-left: var(--grid-gutter);
+}
+
+.grid-column-inline-block {
+    position: relative;
+    display: inline-block;
+    background-color: yellow;
+    font-size: initial;
+    vertical-align: middle;
+}
+
+.grid-column-inline-block + .grid-column-inline-block {
+    margin-left: var(--grid-gutter);
+}
+
+.grid-column-1 {
+    width: var(--grid-column-widths-1);
+}
+
+.grid-column-2 {
+    width: var(--grid-column-widths-2);
+}
+
+.grid-column-3 {
+    width: var(--grid-column-widths-3);
+}
+
+.grid-column-4 {
+    width: var(--grid-column-widths-4);
+}
+
+.grid-column-6 {
+    width: var(--grid-column-widths-6);
+}
+
+@container page (max-width: #{$pageContainerMaxPlusMargins}) {
+    .page-content {
+        --page-margin: 32px;
+    }
+}
+
+@container page (max-width: #{$pageContainerSmallPlusMargins}) {
+    .page-content {
+        --page-margin: 24px;
+        --grid-gutter: 16px;
+    }
+}

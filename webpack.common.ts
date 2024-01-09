@@ -24,7 +24,7 @@ function webpackConfig(env: any): webpack.Configuration {
         },
         entry: {
             home: ['pages/home/home.js', 'pages/home/home.scss'],
-            about: ['pages/about/about.js', 'pages/about/about.scss'],
+            sweetblossomcontainers: ['pages/sweetblossomcontainers/sweetblossomcontainers.js', 'pages/sweetblossomcontainers/sweetblossomcontainers.scss'],
         },
         output: {
             filename: '[name].[chunkhash].bundle.js',
@@ -48,12 +48,12 @@ function webpackConfig(env: any): webpack.Configuration {
                 filename: 'index.html',
                 ...commonHtmlWebpackPluginOptions,
             }),
-            // new HtmlWebpackPlugin({
-            //     template: 'pages/about/about.html',
-            //     chunks: ['about'],
-            //     filename: 'about.html',
-            //     ...commonHtmlWebpackPluginOptions,
-            // }),
+            new HtmlWebpackPlugin({
+                template: 'pages/sweetblossomcontainers/sweetblossomcontainers.html',
+                chunks: ['sweetblossomcontainers'],
+                filename: 'sweetblossomcontainers.html',
+                ...commonHtmlWebpackPluginOptions,
+            }),
             new MiniCssExtractPlugin({
                 filename: '[name].[chunkhash].css'
             }),
