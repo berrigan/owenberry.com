@@ -5,8 +5,7 @@ import * as fs from 'fs/promises';
 
 
 const pdfUrl = 'http://localhost:8000';
-const pdfRenderFolder = './pdf-render/';
-const pdfRenderPath = `${pdfRenderFolder}resume.pdf`;
+
 const dist = './docs/';
 const resumeFolder = `${dist}resume/`;
 const resumePath = `${resumeFolder}resume.pdf`;
@@ -27,7 +26,6 @@ async function renderHtml(httpUrl: string): Promise<void> {
     let browser: Browser | null = null;
 
     await mkDirIfNotExists(resumeFolder);
-    await mkDirIfNotExists(pdfRenderFolder);
 
     try {
         browser = await puppeteer.launch({
@@ -46,10 +44,7 @@ async function renderHtml(httpUrl: string): Promise<void> {
             printBackground: true,
         });
 
-        await Promise.all([
-            fs.writeFile(pdfRenderPath, pdfBuffer),
-            fs.writeFile(resumePath, pdfBuffer),
-        ])
+        await fs.writeFile(resumePath, pdfBuffer);
 
         await browser.close();
         browser = null;
