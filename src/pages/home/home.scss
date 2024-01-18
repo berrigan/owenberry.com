@@ -58,7 +58,7 @@ ul.style-dashed {
         align-items: center;
     }
     & > li:before {
-        content: map.get($dashes, em-small);
+        content: map.get($dashes, hyphen);
         font-weight: 600;
         display: inline-block;
         margin-right: $style-dashed-marker-margin;
