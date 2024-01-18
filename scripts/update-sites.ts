@@ -1,4 +1,4 @@
-let cpx = require('cpx');
+let cpx = require('cpx2');
 
 console.log('Updating sites with shared data ...');
 

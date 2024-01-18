@@ -1,4 +1,4 @@
-let cpx = require('cpx');
+let cpx = require('cpx2');
 import fs = require('fs');
 import path = require('path');
 import _ = require('lodash');
